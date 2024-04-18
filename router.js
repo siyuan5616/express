@@ -1,7 +1,15 @@
 var express = require('express');
 var router = express.Router();
+const fw = (req, res, next) => {
+    console.log('中间件')
+    next()
+}
+const errorfw = (req, res, next) => {
+    console.log('中间件发生异常')
+    res.send('中间件发生异常')
+}
 // get请求
-router.get('/', function (req, res) {
+router.get('/', [fw, errorfw], function (req, res) {
     // 设置响应头
     res.setHeader('Content-Type', 'application/json;charset=utf-8')
     // 获取请求参数
@@ -14,6 +22,7 @@ router.get('/', function (req, res) {
 })
 // post请求
 router.post('/', function (req, res) {
+    console.log(req.body);
     res.send('Hello World Post!');
 })
 // put请求
