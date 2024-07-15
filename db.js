@@ -14,7 +14,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'root',
-    database: 'mysql'
+    database: 'mysql'//数据库名（表的上一层）
 });
 
 connection.connect((err) => {
