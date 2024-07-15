@@ -6,7 +6,8 @@ const fw = (req, res, next) => {
 }
 const errorfw = (req, res, next) => {
     console.log('中间件发生异常')
-    res.send('中间件发生异常')
+    // res.send('中间件发生异常')
+    next()
 }
 // get请求
 router.get('/', [fw, errorfw], function (req, res) {
