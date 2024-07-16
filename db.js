@@ -11,10 +11,10 @@ app.use(cors());
 
 // 结合MySQL数据库
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'mysql'//数据库名（表的上一层）
+    host: '8.130.48.78',
+    user: 'nodemysql',
+    password: 'nodemysql',
+    database: 'nodemysql'//数据库名（表的上一层）
 });
 
 connection.connect((err) => {
@@ -23,7 +23,7 @@ connection.connect((err) => {
         return;
     }
 });
-// http://localhost:3000/api
+
 connection.query('select  * from student su', (err, results, fields) => {
     if (err) throw err;
     // 定义POST请求的路由
@@ -49,3 +49,6 @@ connection.end((err) => {
     }
     console.log('MySQL database connection closed');
 });
+
+
+

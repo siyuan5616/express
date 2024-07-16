@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const stuModel = require('./Model/stuModel');
+const stuModel = require('../Model/stuModel');
 
 // 获取所有学生信息：http://localhost:8089/student/search
 router.get('/search', async (req, res, next) => {

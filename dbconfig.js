@@ -1,8 +1,8 @@
 const Sequelize = require("sequelize");
 
 // 创建一个新的Sequelize实例,三个参数，库名，账户，密码
-const DB = new Sequelize("mysql", "root", "root", {
-    host: "localhost", // 主机地址
+const DB = new Sequelize("nodemysql", "nodemysql", "nodemysql", {
+    host: '8.130.48.78',
     port: 3306, // 数据库端口号
     dialect: "mysql", // 数据库类型
     pool: {
