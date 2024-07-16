@@ -1,11 +1,10 @@
 const DB = require("../dbconfig"); // 导入数据库配置文件
 const Sequelize = require("sequelize"); // 导入模块
-
 // stu是数据库的表名
 const stuModel = DB.define("student", {
     id: {
         primaryKey: true,
-        type: Sequelize.INT, // 数据类型改为INT
+        type: Sequelize.INTEGER, // 数据类型改为INTEGER
         field: "id",
         autoIncrement: true // 自增
     },

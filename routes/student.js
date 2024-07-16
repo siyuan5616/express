@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const stuModel = require('../Model/stuModel');
 
-// 获取所有学生信息：http://localhost:8089/student/search
+// 获取所有学生信息：http://localhost:3000/student/search
 router.get('/search', async (req, res, next) => {
     try {
         const result = await stuModel.findAll({ raw: true });
@@ -15,7 +15,7 @@ router.get('/search', async (req, res, next) => {
     }
 });
 
-// 添加学生信息：http://localhost:8089/student/add
+// 添加学生信息：http://localhost:3000/student/add
 router.post('/add', async (req, res, next) => {
     try {
         const { id, name, age, gender } = req.body;
@@ -29,7 +29,7 @@ router.post('/add', async (req, res, next) => {
     }
 });
 
-// 删除学生信息：http://localhost:8089/student/delete
+// 删除学生信息：http://localhost:3000/student/delete
 router.post('/delete', async (req, res, next) => {
     try {
         const { id } = req.body;
@@ -43,7 +43,7 @@ router.post('/delete', async (req, res, next) => {
     }
 });
 
-// 更新某条信息：http://localhost:8089/student/update
+// 更新某条信息：http://localhost:3000/student/update
 router.put('/update', async (req, res, next) => {
     try {
         const { id, name, age, gender } = req.body;
