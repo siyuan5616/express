@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const stuModel = require('../Model/stuModel');
-
+const { body, validationResult } = require('express-validator');
 // 获取所有学生信息：http://localhost:3000/student/search
 router.get('/search', async (req, res, next) => {
     try {
@@ -16,7 +16,31 @@ router.get('/search', async (req, res, next) => {
 });
 
 // 添加学生信息：http://localhost:3000/student/add
-router.post('/add', async (req, res, next) => {
+router.post('/add', [ //配置验证规则，链式调用，上一个正常下一个才会执行
+    body('name').notEmpty().withMessage('用户名不能为空！')
+        .custom(async username => {
+            const user = await User.findOne({ username })
+            if (user)
+                return Promise.reject('用户名已存在')
+        }),
+    body('age').notEmpty().withMessage('年龄不能为空！'),
+    body('gender').notEmpty().withMessage('性别不能为空！')
+        .isEmail().withMessage('邮箱格式不正确！')
+        .bail()
+        .custom(async email => {
+            const user = await User.findOne({ email })
+            if (user)
+                return Promise.reject('邮箱已经存在')
+        }),
+], async (req, res, next) => {
+    const errors = validationResult(req)
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            errors: errors.array()
+        })
+    }
+    next()
     try {
         const { id, name, age, gender } = req.body;
         const result = await stuModel.create({ id, name, age, gender });

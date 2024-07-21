@@ -11,7 +11,7 @@ const stuModel = DB.define("student", {
     name: {
         type: Sequelize.STRING(30), // 数据类型改为STRING(30)
         allowNull: false,
-        defaultValue: '匿名', // 默认值为'匿名'
+        defaultValue: '', // 默认值为'匿名'
         field: "name"
     },
     pwd: {
