@@ -31,7 +31,7 @@ const homeList = [
     { id: 2, name: '北京' },
     { id: 3, name: '南京' }
 ]
-// 模板引擎代码传参 home.ejs
+// 模板引擎代码传参 http://localhost:3000
 app.get('/', (request, response) => {
 
     response.render('home', { homeList: homeList })
