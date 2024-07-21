@@ -8,7 +8,7 @@ const cors = require('cors');
 // 模板引擎
 // 1. 将 ejs 设置为默认的模板引擎
 app.set('view engine', 'ejs')
-// 2. 设置模板引擎的存放处
+// 2. 设置模板引擎的存放处，在views文件夹下并默认为views
 app.set('views', './views')
 
 // 解析表单数据中间件，要放在路由前,要不然post发过来参数获取不到
@@ -24,6 +24,7 @@ app.use(express.static('public'));
 
 // 模板引擎  http://localhost:3000/login
 app.get('/login', (req, res) => {
+    // 渲染模板引擎，找到views文件夹下的login.ejs文件
     res.render('login', { username: '派蒙', age: 18 })
 })
 const homeList = [
@@ -33,7 +34,7 @@ const homeList = [
 ]
 // 模板引擎代码传参 http://localhost:3000
 app.get('/', (request, response) => {
-
+    // 渲染模板引擎，找到views文件夹下的home.ejs文件
     response.render('home', { homeList: homeList })
 })
 
